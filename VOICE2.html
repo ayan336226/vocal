@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Custom Audio Player</title>
+
+</head>
+<body style=" background: linear-gradient(rgb(200, 126, 30),rgb(176, 246, 241));">
+<section class="sec-1">
+  <div class="player">
+    <h2>3</h2>
+    <h3>🎶 For you 🤌</h3>
+    <h4>Saiyara...</h4>
+    <audio id="audio" src="REC20251007222908.mp3"></audio>
+  
+    <div class="controls">
+      <button id="playBtn">▶ Play</button>
+    </div>
+    
+    <!-- Progress bar -->
+    <input type="range" id="progress" value="0" min="0" max="100">
+    
+    <!-- Volume control -->
+    <div class="volume-control">
+      <span>🔉</span>
+      <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
+    </div>
+  </div>
+   <!-- Download Button -->
+    <div class="download-container">
+      <a href="REC20251007222908.mp3" download class="download-btn">⬇ Download</a>
+      
+    </div>
+
+  </div>
+  <div class="songs-list">
+    <h1 style="color: white;">Songs-shortcut</h1>
+   <ul>
+  <li><a href="index.html"><span style="color: rgb(19, 21, 22);">1.</span>Dokha de gaya <hr></a></li>
+    <li><a href="VOICE1.html"><span style="color: rgb(19, 21, 22);">2.</span>Saawre <hr></a></li>
+      <li><a href="VOICE2.html"><span style="color: rgb(19, 21, 22);">3.</span>Saiyaara <hr></a></li>
+        <li><a href="VOICE3.html"><span style="color: rgb(19, 21, 22);">4.</span>kese-hua <hr></a></li>
+          <li><a href="VOICE4.html"><span style="color: rgb(19, 21, 22);">5.</span>Dekha tenu <hr></a></li>
+            <li><a href="VOICE5.html"><span style="color: rgb(19, 21, 22);">6.</span>Chal waha jaate hain <hr></a></li>
+            <li><a href="VOICE6.html"><span style="color: rgb(19, 21, 22);">7.</span>Phr kabhi <hr></a></li>
+ </ul>
+</div>
+</section>
+
+  <script>
+    const audio = document.getElementById("audio");
+    const playBtn = document.getElementById("playBtn");
+    const progress = document.getElementById("progress");
+    const volume = document.getElementById("volume");
+
+    // Play / Pause button
+    playBtn.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = "⏸ Pause";
+      } else {
+        audio.pause();
+        playBtn.textContent = "▶ Play";
+      }
+    });
+
+    // Set progress bar max when audio loads
+    audio.addEventListener("loadedmetadata", () => {
+      progress.max = audio.duration;
+    });
+
+    // Update progress bar
+    audio.addEventListener("timeupdate", () => {
+      progress.value = audio.currentTime;
+    });
+
+    // Seek audio
+    progress.addEventListener("input", () => {
+      audio.currentTime = progress.value;
+    });
+
+    // Volume control
+    volume.addEventListener("input", () => {
+      audio.volume = volume.value;
+    });
+  </script>
+
+<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    twemoji.parse(document.body);
+  });
+</script>
+</body>
+</html>
